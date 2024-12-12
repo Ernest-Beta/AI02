@@ -47,7 +47,7 @@ public class Teacher {
         return subjects.contains(subjectID);
     }
 
-    //Static method to parse the teachers.txt file and return a list of Teacher objects
+   //Static method to parse the teachers.txt file and return a list of Teacher objects
     public static List<Teacher> parseTeachersFile(String filename) {
         List<Teacher> teachers = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {

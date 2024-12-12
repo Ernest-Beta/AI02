@@ -39,27 +39,27 @@ public class TimetableSlot {
     }
 
     //convert day integer to day name
-    public String getDayName() {
+    /*public String getDayName() {
         String[] days = {"ΔΕΥΤΕΡΑ", "ΤΡΙΤΗ", "ΤΕΤΑΡΤΗ", "ΠΕΜΠΤΗ", "ΠΑΡΑΣΚΕΥΗ"};
         return days[day];
-    }
+    }*/
 
     //convert hour integer to time range
-    public String getHourRange() {
+    /*public String getHourRange() {
         String[] hours = {
             "8:00-9:00", "9:00-10:00", "10:00-11:00",
             "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00"
         };
         return hours[hour];
-    }
+    }*/
 
     
-    @Override
+    /*@Override
     public String toString() {
         return ",ΜΑΘΗΜΑ: " + lesson.getName() +
                ", ΚΑΘΗΓΗΤΗΣ: " + teacher.getName() +
                ", ΤΜΗΜΑ: " + section +
                ", ΗΜΕΡΑ: " + getDayName() +
                ", ΩΡΑ: " + getHourRange();
-    }
+    }*/
 }

@@ -90,18 +90,27 @@ public class Chromosome implements Comparable<Chromosome> {
     private int[] distributeHours(int totalHours) {
         int[] dailyHours = new int[DAYS];
         int remainingHours = totalHours;
-        Random random = new Random();
-
+    
+        // Create a list of days and shuffle it to randomize the order
+        List<Integer> days = new ArrayList<>();
+        for (int day = 0; day < DAYS; day++) {
+            days.add(day);
+        }
+    
+        // Shuffle the days to randomize distribution
         while (remainingHours > 0) {
-            for (int day = 0; day < DAYS && remainingHours > 0; day++) {
-                if (dailyHours[day] < HOURS) {
+            Collections.shuffle(days);
+            for (int day : days) {
+                if (dailyHours[day] < HOURS && remainingHours > 0) {
                     dailyHours[day]++;
                     remainingHours--;
                 }
             }
         }
+    
         return dailyHours;
     }
+    
 
     
     // Randomly initialize the timetable with lessons and qualified teachers
@@ -132,6 +141,7 @@ public class Chromosome implements Comparable<Chromosome> {
     
             //create a list of lessons to schedule, each repeated as per its required hours
             List<Lesson> lessonsToSchedule = new ArrayList<>();
+            //adds lesson multiple times based on its required hours
             for (Map.Entry<Lesson, Integer> entry : lessonRemainingHours.entrySet()) {
                 Lesson lesson = entry.getKey();
                 int hours = entry.getValue();
@@ -153,11 +163,11 @@ public class Chromosome implements Comparable<Chromosome> {
                     if (lessonIndex >= lessonsToSchedule.size()) {
                         break; //No more lessons to schedule
                     }
-    
+                    //retrieves the next lesson to be scheduled
                     Lesson lesson = lessonsToSchedule.get(lessonIndex++);
                     int slot = day * HOURS + hour;
     
-                    //find all teachers who can teach this lesson
+                    //find all teachers who can teach this lesson as we have multiple 
                     List<Teacher> qualifiedTeachers = new ArrayList<>();
                     for (Teacher teacher : teachers) {
                         if (teacher.canTeach(lesson.getSubjectID())) {
@@ -289,23 +299,12 @@ public class Chromosome implements Comparable<Chromosome> {
         System.out.println(x);
     }
     
-    
-    
-
-    
-    
-    
-
-
     //helper method to get section name
     public String getSectionName(int sectionIndex) {
         String[] sections = {"A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"};
         return sections[sectionIndex];
     }
-    ////////////////////////////////////////////////////HELPER
 
-    
-    //////////////////////////////////////////////////////////HELPER
   
     public TimetableSlot[][] getTimetable() {
         return timetable;

@@ -21,7 +21,7 @@ public class GeneticAlgorithm {
     public void initializePopulation(List<Lesson> lessons, List<Teacher> teachers) {
         for (int i = 0; i < populationSize; i++) {
             Chromosome chromosome = new Chromosome(lessons, teachers);
-            chromosome.calculateFitness(); // Add this line
+            chromosome.calculateFitness(); 
             population.add(chromosome);
         }
         

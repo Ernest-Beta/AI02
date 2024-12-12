@@ -12,10 +12,10 @@ public class Main {
             List<Teacher> teachers = Teacher.parseTeachersFile("teachers.txt");
 
             //intializing genetic algorithm parameters
-            int populationSize = 1000;
+            int populationSize = 500;
             double mutationProbability = 0.05;
             int maxGenerations = 10000000;
-            double fitnessThreshold = 0.9975;
+            double fitnessThreshold = 0.95;
 
             //creating the GeneticAlgorithm object
             GeneticAlgorithm algorithm = new GeneticAlgorithm(populationSize, mutationProbability, maxGenerations, fitnessThreshold);
@@ -41,8 +41,8 @@ public class Main {
                 }
             }
 
-            timetable.exportTimetable("final_timetable.txt");
-            System.out.println("Timetable exported to final_timetable.txt");
+            timetable.exportTimetable("final.txt");
+            System.out.println("Timetable exported to final.txt");
         } catch (Exception e) {
             System.out.println("An error occurred: " + e.getMessage());
             e.printStackTrace();

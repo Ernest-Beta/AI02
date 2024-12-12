@@ -1,4 +1,3 @@
-import java.util.List;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,7 +11,7 @@ public class Timetable {
 
     
     public Timetable() {
-        this.timetable = new TimetableSlot[SECTIONS][TIME_SLOTS];  // sto timeslot nmz dn xreiazetai na exoume section,day,hour kathos anaparistatai apo mono toy apo thn thesh pou brhskete to slot ston pinaka
+        this.timetable = new TimetableSlot[SECTIONS][TIME_SLOTS];  
     }
 
     //set a slot in the timetable
@@ -46,6 +45,11 @@ public class Timetable {
 
     //export the timetable to a file
     public void exportTimetable(String filename) {
+        String[] timeSlots = {
+            "08:00-09:00", "09:00-10:00", "10:00-11:00", 
+            "11:00-12:00", "12:00-13:00", "13:00-14:00", 
+            "14:00-15:00", "15:00-16:00" // Add more if needed
+        };
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, java.nio.charset.StandardCharsets.UTF_8))) {
             for (int section = 0; section < SECTIONS; section++) {
                 writer.write("ΤΜΗΜΑ: " + getSectionName(section) + "\n");
@@ -54,7 +58,7 @@ public class Timetable {
                     for (int hour = 0; hour < HOURS; hour++) {
                         TimetableSlot slot = getSlot(section, day, hour);
                         if (slot != null) {
-                            writer.write("Η ΩΡΑ " + (hour + 1) + ": " + slot.getLesson().getName() +
+                            writer.write("Η ΩΡΑ " + timeSlots[hour] + ": " + slot.getLesson().getName() +
                                          " ΔΙΔΑΣΚΕΤΑΙ ΑΠΟ: " + slot.getTeacher().getName() + "\n");
                         } else {
                             writer.write("ΩΡΑ " + (hour + 1) + ": Free\n");
